@@ -1,21 +1,16 @@
 # Experiment
 
-**TODO: Add description**
+Check to see if I can:
 
-## Installation
+1. Connect to an sqlite3 database with a name supplied at runtime.
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `experiment` to your list of dependencies in `mix.exs`:
+## Running Elixir
 
-```elixir
-def deps do
-  [
-    {:experiment, "~> 0.1.0"}
-  ]
-end
 ```
+mix deps.get
+./build-dbs.sh
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/experiment>.
+SQLITE_FILE=bands1.db mix bands
 
+SQLITE_FILE=bands2.db mix bands
+```

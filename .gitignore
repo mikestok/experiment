@@ -24,3 +24,6 @@ experiment-*.tar
 
 # Temporary files, for example, from tests.
 /tmp/
+
+# A place for database files.
+/dbs/

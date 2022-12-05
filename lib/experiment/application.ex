@@ -10,6 +10,7 @@ defmodule Experiment.Application do
     children = [
       # Starts a worker by calling: Experiment.Worker.start_link(arg)
       # {Experiment.Worker, arg}
+      DynamicSqlite.Repo
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
