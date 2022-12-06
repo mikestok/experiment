@@ -7,9 +7,10 @@ defmodule Mix.Tasks.Bands do
 
     "dbs/*.db"
     |> Path.wildcard()
-    |> Enum.each(fn filename ->
-      IO.puts("Using #{filename}")
-      DynamicSqlite.Repo.using_file(filename, &list_bands/0)
+    |> Enum.map(&to_sqlite_url(&1, mode: "ro", immutable: 1))
+    |> Enum.each(fn url ->
+      IO.puts("Using #{url}")
+      DynamicSqlite.Repo.using_file(url, &list_bands/0)
     end)
   end
 
@@ -18,5 +19,13 @@ defmodule Mix.Tasks.Bands do
     |> DynamicSqlite.Repo.all()
     |> Enum.map(& &1.name)
     |> IO.inspect()
+  end
+
+  defp to_sqlite_url(filename, opts) do
+    URI.to_string(%URI{
+      scheme: "file",
+      path: filename,
+      query: URI.encode_query(opts)
+    })
   end
 end

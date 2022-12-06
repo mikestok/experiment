@@ -3,8 +3,11 @@
 set -e
 set -x
 
-mkdir -p dbs
-rm -f dbs/bands*
+if [ -d dbs ]; then
+  chmod +w dbs
+  rm -rf dbs
+fi
+mkdir dbs
   
 sqlite3 dbs/bands1.db <<ETX
 
@@ -69,3 +72,5 @@ VALUES
 ('d683a79c-8732-4e38-a866-bb4898174313', 'f3c9e2b2-3ac8-486a-ab40-e32b6961accd', '1976-03-01', '1976-07-31');
 
 ETX
+
+chmod -R -w dbs
